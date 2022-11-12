@@ -27,6 +27,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - name: Set up Docker Layer caching
+        uses: satackey/action-docker-layer-caching@v0.0.11
+        # Ignore the failure of a step and avoid terminating the job.
+        continue-on-error: true
+
       # Runs a single command using the runners shell
       - name: Build the static site
         run: docker-compose run --rm --entrypoint "/bin/bash -c 'npm install;npx eleventy'" eleventy
@@ -36,11 +41,6 @@ jobs:
           mkdir -p smashtest
           chmod -R a+rw smashtest
           docker-compose -f docker-compose.tests.yml run --rm smashtest
-
-      - name: Cache the docker layers for next time
-        uses: satackey/action-docker-layer-caching@v0.0.11
-        # Ignore the failure of a step and avoid terminating the job.
-        continue-on-error: true
 
       - name: Upload Smashtest Report Artifact
         uses: actions/upload-artifact@v3
