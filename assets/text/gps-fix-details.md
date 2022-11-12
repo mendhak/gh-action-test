@@ -9,3 +9,5 @@ The ephemeris data is more precise; it is broadcast more frequently and goes sta
 Because it takes so long, to assist with this, many mobile operators deploy aGPS servers; these servers have already downloaded the almanac and ephemeris data and your phone can download it from them at a faster rate then from the satellites. But it does mean that your phone has to be on a familiar network. Being on roaming or with a restricted data plan will prevent this from happening.
 
 All in all, there are a lot of factors at play. The problem could be anything from missing almanacs to data to hardware. GPSLogger simply waits for the OS to be ready with its information.
+
+TEST
