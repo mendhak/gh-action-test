@@ -37,4 +37,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: smashtest-report
-          path: smashtest/ 
+          path: assets/generate-pages/smashtest/ 
