@@ -32,7 +32,10 @@ jobs:
         run: docker-compose run --rm --entrypoint "/bin/bash -c 'npm install;npx eleventy'" eleventy
 
       - name: Test the generated pages
-        run: docker-compose -f docker-compose.tests.yml run --rm smashtest
+        run: |
+          mkdir -p smashtest
+          chmod -R a+rw smashtest
+          docker-compose -f docker-compose.tests.yml run --rm smashtest
 
       - uses: actions/upload-artifact@v3
         with:
