@@ -37,7 +37,15 @@ jobs:
           chmod -R a+rw smashtest
           docker-compose -f docker-compose.tests.yml run --rm smashtest
 
-      - uses: actions/upload-artifact@v3
+      - name: Cache the docker layers for next time
+        uses: satackey/action-docker-layer-caching@v0.0.11
+        # Ignore the failure of a step and avoid terminating the job.
+        continue-on-error: true
+
+      - name: Upload Smashtest Report Artifact
+        uses: actions/upload-artifact@v3
         with:
           name: smashtest-report
           path: assets/generate-pages/smashtest/ 
+          
+        
